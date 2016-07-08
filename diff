@@ -1,0 +1,29 @@
+diff --git a/vostan.db b/vostan.db
+old mode 100644
+new mode 100755
+index 153f454..72b8b79
+Binary files a/vostan.db and b/vostan.db differ
+diff --git a/vostan_lib/vostan.js b/vostan_lib/vostan.js
+index 60f039d..686d836 100644
+--- a/vostan_lib/vostan.js
++++ b/vostan_lib/vostan.js
+@@ -1189,6 +1189,19 @@
+                 $("#vostanEditStage").show();
+             };
+ 
++
++	    //-------function for window(width,height)
++	    function windowsize(){
++		    var windwidth = 0;
++		    var windheigth = 0;
++		    if(typeof (window.innerwidth) == 'number'){
++
++			    windwidth = window.innerwidth;
++			    windheight = window.innerheight;
++		    }
++
++	    }
++
+             // Edit image
+             this.editImg = function () {
+                 var editImg = $('<input type="text" class="edit-img"/>')
