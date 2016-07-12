@@ -294,7 +294,7 @@
             }
 
             if (config.share) {
-                var shareNode = $('<node id="shareNode"></node>');
+                var shareNode = $('<node id="shareNode">&nbsp;</node>');
                 vostanAccountControls.append(shareNode);
 
                 var resetShare = function() {
@@ -305,13 +305,10 @@
 
                 var get_path = function(str) {
                     var index = str.lastIndexOf("/");
-                    var base_url = str.substr(0, index);
-                    return base_url;
+                    return str.substr(0, index);
                 };
 
-                $("body").on("vostanToggle", function() {
-                    resetShare();
-                });
+                $("body").on("vostanToggle", resetShare);
 
                 $("#shareNode").click( function(e) {
                     if (!isEditMode()) {
@@ -558,7 +555,18 @@
 
             _linkColor = $("#vostanStage").css("color");
             _linkWidth = $("#vostanStage").css("line-height").replace("px", "");
-        };
+
+            var delta = $(document).width() / $("#vostanMap").width();
+            var nHeight = delta * $("#shareNode").width();
+            var lHeight = $("#shareNode").css("line-height").replace("px", "");
+
+            $("node.lang, #shareNode").css("width", nHeight);
+            $("#vostanAccountControls node").css("height", nHeight);
+            if (nHeight > parseInt(lHeight))  {
+                $("#vostanAccountControls node").css("line-height", nHeight + "px");
+            }
+
+   };
 
         var loadTheMap = function(item) {
             var root = !item ? _root : item.nodeID();
